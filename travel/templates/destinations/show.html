@@ -6,15 +6,15 @@
 
 <div class="container">  
     <div class="row mt-5 mb-3">  
-      <div class="col-md-12 d-flex justify-content-between align-items-center">  
-        <div class="d-inline">  
+      <div class="col-md-12">  
+        <div class="float-left">  
           <h1 class="mb-0">{{ destination.name }}</h1>  
           <p>Popular Destination</p>  
         </div>  
  
-        <div class="text-end">  
+        <div class="float-right text-right">  
           <p class="mb-0">1 AUD equals</p>  
-          <h2 id="exchange-rate">0.62 {{ destination.currency }}</h2>  
+          <h2 id="exchange-rate">0.62 {{ destination.currency }}</h1>  
         </div>  
       </div>  
     </div>  
@@ -24,10 +24,10 @@
       <div class="col-md-12">  
         <div class="card my-3">  
           <div class="card-body">  
-            <div class="d-flex">  
-              <img class="align-self-start me-3" src="{{ destination.image }}" style="max-width: 250px;">  
+            <div class="media">  
+              <img class="align-self-start mr-3" src="{{ destination.image }}">  
               <div class="media-body">  
-                <p class="font-weight-bold text-muted">Stay 2 nights</p>  
+                <small class="font-weight-bold text-muted">Stay 2 nights</small>  
                 <h5 class="mt-0">{{ destination.name }}</h5>  
                 <p>{{ destination.description }}</p>  
                 <a href="#" class="btn btn-danger">Book Now</a>  
@@ -37,28 +37,24 @@
         </div>  
       </div>  
     </div>
-    
     <hr>
-
     <!-- Comments -->  
-    <div class="comments" style="padding-left: 55px; padding-right: 55px;">
-      <div class="row">  
-        <div class="col-md-12">  
-          <h2>Comments</h2>  
-        </div>  
+    <div class="row">  
+      <div class="col-md-12">  
+        <h2>Comments</h1>  
       </div>  
-  
-      <div class="row border-bottom">
-        <div class="col-md-12">  
-        {{ render_form(form,"/destinations/{0}/comment".format(destination.id)) }}
-        
-        {% for comment in destination.comments %}
-          <b>{{ comment.user.name }} <span class="ms-2 text-muted">{{ comment.created_at.strftime('%Y-%m %H:%M') }}</span></b>
-          <p>{{ comment.text }}</p>  
-        </div> 
-        {% endfor %} 
-      </div>  
-    </div>
-  </div>
+    </div>  
+ 
+    <div class="row border-bottom"> 
+      {{ render_form(form,"/destinations/{0}/comment".format(destination.id)) }}
+      
+      {% for comment in destination.comments %}
+      <div class="col-md-12">  
+        <b>{{ comment.user.name }} <span class="ml-2 text-muted">January 2024</span></b>
+        <p>{{ comment.text }}</p>  
+      </div> 
+      {% endfor %} 
+    </div>  
+  </div> 
 
 {% endblock %}
